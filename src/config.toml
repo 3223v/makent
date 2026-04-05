@@ -1,0 +1,41 @@
+[llm]
+api_key = "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"
+api_key_env = ["OPENROUTER_API_KEY", "OPENAI_API_KEY"]
+temperature = 0.0
+
+[[llm.clients]]
+name = "openrouter-qwen"
+provider = "openrouter"
+model = "qwen/qwen3.6-plus:free"
+
+[[llm.clients]]
+name = "openrouter-step"
+provider = "openrouter"
+model = "stepfun/step-3.5-flash:free"
+
+[[llm.clients]]
+name = "moonshot"
+provider = "moonshot"
+model = "kimi-k2.5"
+url = "https://api.moonshot.cn/v1"
+api_key = "sk-YAQDQbbfU3O6YCbZ5xKxlti0BXTcT7zZ3VOYRBOUYAzuLCxW"
+
+[agent]
+max_steps = 5
+
+[tools]
+script_dir = "script"
+mcp_dir = "mcp"
+mcp_servers = []
+
+[skills]
+skill_dirs = ["skills"]
+
+[prompt]
+system_prompt_file = "prompt/sys_prompt/core_sys.md"
+agent_role_file = "prompt/layers/agent_role.md"
+skill_rules_file = "prompt/layers/skill_rules.md"
+tool_rules_file = "prompt/layers/tool_rules.md"
+
+[logging]
+log_dir = "log"

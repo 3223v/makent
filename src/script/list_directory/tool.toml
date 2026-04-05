@@ -1,0 +1,15 @@
+name = "list_directory"
+description = "List files and directories inside a target directory."
+runtime = "python"
+entry = "main.py"
+args_mode = "json-stdin"
+timeout_sec = 20
+platforms = ["windows", "linux", "macos"]
+
+[parameters]
+type = "object"
+required = ["path"]
+
+[parameters.properties.path]
+type = "string"
+description = "Directory path to inspect."
