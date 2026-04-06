@@ -39,9 +39,11 @@ def build_agent(config_path=DEFAULT_CONFIG_PATH):
             LLMClient(
                 api_key=client.resolve_api_key(settings.llm.api_key, settings.llm.api_key_env),
                 model=client.model,
+                provider=client.provider,
                 url=client.resolve_url(),
                 temperature=client.resolve_temperature(settings.llm.temperature),
                 name=client.name,
+                thinking_enabled=client.thinking_enabled,
             )
             for client in settings.llm.clients
         ]

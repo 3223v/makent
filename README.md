@@ -218,3 +218,29 @@ Additional docs:
 
 - [docs/skill-spec.md](docs/skill-spec.md)
 - [docs/script-tool-manifest.md](docs/script-tool-manifest.md)
+
+## Per-Client Thinking
+
+Each `[[llm.clients]]` entry can now set:
+
+```toml
+thinking_enabled = true
+```
+
+or
+
+```toml
+thinking_enabled = false
+```
+
+This is applied per client, so thinking-enabled and thinking-disabled models can coexist in the same router.
+
+Current provider-aware request mapping:
+
+- `moonshot` -> `thinking = { type = "enabled" | "disabled" }`
+- `openrouter` -> `reasoning = { enabled = true | false }`
+
+The runtime also sanitizes message history per client:
+
+- thinking-enabled clients keep reasoning fields
+- thinking-disabled clients strip reasoning fields before the request is sent

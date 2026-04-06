@@ -1,24 +1,11 @@
-[llm]
-api_key = "key"
-api_key_env = ["OPENROUTER_API_KEY", "OPENAI_API_KEY"]
-temperature = 0.0
-
-[[llm.clients]]
-name = "openrouter-qwen"
-provider = "openrouter"
-model = "qwen/qwen3.6-plus:free"
-
-[[llm.clients]]
-name = "openrouter-step"
-provider = "openrouter"
-model = "stepfun/step-3.5-flash:free"
-
 [[llm.clients]]
 name = "moonshot"
 provider = "moonshot"
+temperature = 1.0
+thinking_enabled = true
 model = "kimi-k2.5"
 url = "https://api.moonshot.cn/v1"
-api_key = "key"
+api_key = "sk-Fcdscsdcsdcsdcasdcscsdcdscsdcsd"
 
 [agent]
 max_steps = 5

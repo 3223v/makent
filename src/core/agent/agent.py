@@ -52,7 +52,11 @@ class Agent:
 
         while state.step < state.max_steps:
             resp = self.llm.chat(state.messages, tools=self.executor.schemas())
-            state.add_assistant_message(content=resp.content, tool_calls=resp.tool_calls)
+            state.add_assistant_message(
+                content=resp.content,
+                tool_calls=resp.tool_calls,
+                raw_message=resp.assistant_message
+            )
 
             if logger:
                 logger.log_llm_response(state.step, resp.content, resp.tool_calls)

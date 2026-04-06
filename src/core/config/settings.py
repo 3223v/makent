@@ -58,6 +58,7 @@ class ClientSettings:
     api_key: str = ""
     api_key_env: List[str] = field(default_factory=list)
     temperature: Optional[float] = None
+    thinking_enabled: Optional[bool] = None
 
     def resolve_url(self) -> str:
         preset = PROVIDER_PRESETS.get(self.provider.lower(), PROVIDER_PRESETS["custom"])
@@ -209,6 +210,7 @@ def _load_llm_clients(llm_raw) -> List[ClientSettings]:
                 api_key=client.get("api_key", ""),
                 api_key_env=_normalize_list(client.get("api_key_env", [])),
                 temperature=_optional_float(client.get("temperature")),
+                thinking_enabled=_optional_bool(client.get("thinking_enabled")),
             )
             for index, client in enumerate(clients_raw, start=1)
         ]
@@ -223,6 +225,7 @@ def _load_llm_clients(llm_raw) -> List[ClientSettings]:
             api_key=model.get("api_key", ""),
             api_key_env=_normalize_list(model.get("api_key_env", [])),
             temperature=_optional_float(model.get("temperature")),
+            thinking_enabled=_optional_bool(model.get("thinking_enabled")),
         )
         for model in legacy_models_raw
     ]
@@ -241,6 +244,19 @@ def _optional_float(value):
     if value is None:
         return None
     return float(value)
+
+
+def _optional_bool(value):
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    text = str(value).strip().lower()
+    if text in {"true", "1", "yes", "on"}:
+        return True
+    if text in {"false", "0", "no", "off"}:
+        return False
+    raise ValueError(f"Cannot parse boolean value: {value}")
 
 
 def _resolve_config_path(config_path: str) -> Path:

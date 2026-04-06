@@ -31,7 +31,15 @@ class AgentState:
     def add_user_message(self, content: str):
         return self.add_message("user", content)
 
-    def add_assistant_message(self, content: Optional[str] = None, tool_calls=None):
+    def add_assistant_message(self, content: Optional[str] = None, tool_calls=None, raw_message: Optional[Dict[str, Any]] = None):
+        if raw_message:
+            message = dict(raw_message)
+            message.setdefault("role", "assistant")
+            if "content" not in message:
+                message["content"] = content
+            self.messages.append(message)
+            return message
+
         message = {"role": "assistant", "content": content}
 
         if tool_calls:

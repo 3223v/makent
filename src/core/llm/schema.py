@@ -13,4 +13,5 @@ class ToolCall:
 class LLMResponse:
     content: Optional[str]
     tool_calls: List[ToolCall] = field(default_factory=list)
+    assistant_message: Optional[Dict[str, Any]] = None
     raw: Any = None
