@@ -1,7 +1,8 @@
 import argparse
 import shlex
 from pathlib import Path
-
+import sys
+import io
 try:
     from Src.core.agent import Agent
     from Src.core.config import load_settings
@@ -25,7 +26,8 @@ except ModuleNotFoundError:
     from core.tools.providers import McpToolProvider, ScriptToolProvider
     from core.tools.tools import ToolRegistry
 
-
+# 强制标准输入使用 utf-8
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8', errors='replace')
 DEFAULT_CONFIG_PATH = Path(__file__).resolve().with_name("config.toml")
 
 
