@@ -1,5 +1,5 @@
 [llm]
-api_key = "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"
+api_key = "key"
 api_key_env = ["OPENROUTER_API_KEY", "OPENAI_API_KEY"]
 temperature = 0.0
 
@@ -18,7 +18,7 @@ name = "moonshot"
 provider = "moonshot"
 model = "kimi-k2.5"
 url = "https://api.moonshot.cn/v1"
-api_key = "sk-YAQDQbbfU3O6YCbZ5xKxlti0BXTcT7zZ3VOYRBOUYAzuLCxW"
+api_key = "key"
 
 [agent]
 max_steps = 5
