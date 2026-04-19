@@ -11,6 +11,13 @@
 详细架构见 [docs/architecture.md](docs/architecture.md)。
 Skill 编写规范见 [docs/skill-spec.md](docs/skill-spec.md)。
 
+## info
+   static 有一个测试结果，不知道为啥它识别不到当前主机的node环境，不得不传给它，这个项目只是用来理解agent的工作流程
+   没有使用框架，从llm搭建起来的
+   效果一般
+   ![运行测试](static/demo.png)
+   ![效果](static/show.png)
+   
 ## 当前状态
 
 - 已实现 `script` tool source
